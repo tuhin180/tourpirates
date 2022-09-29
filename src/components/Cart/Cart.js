@@ -1,7 +1,7 @@
 import React from "react";
 
-const Cart = (props) => {
-  const { Cost, description, img, title, duration } = props.event;
+const Cart = ({ event, handleAddToList }) => {
+  const { Cost, description, img, title, duration } = event;
   return (
     <div className="p-2 border rounded-md border-gray-500 ">
       <img className="rounded-md" src={img} alt="" />
@@ -18,7 +18,10 @@ const Cart = (props) => {
         <span className="text-green-500"> {Cost}</span>
       </p>
       <p className="text-left">{description}</p>
-      <button className="btn btn-secondary w-full text-white ">
+      <button
+        onClick={() => handleAddToList(event)}
+        className="btn btn-secondary w-full text-white "
+      >
         Add to List
       </button>
     </div>
