@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import profile from "../../Utilities/images/Tuhin.jpg";
+import { toast, ToastContainer } from "react-toastify";
 
 // calculating Cost
 const SideCart = ({ cart }) => {
@@ -20,8 +21,11 @@ const SideCart = ({ cart }) => {
     const getStoredItem = localStorage.getItem("rest-time");
     setTime(getStoredItem);
   }, []);
+
+  const displayToast = () => toast("Activity Completed");
   return (
     <div className="bg-green-400 rounded sticky top-0 p-2 ">
+      <ToastContainer position="top-right"></ToastContainer>
       <div className=" md:flex md:gap-2 justify-center text-center items-center">
         <img className="w-10 rounded-badge  " src={profile} alt="" />
         <h1 className="text-white">MD.Tuhin Hossain</h1>
@@ -80,7 +84,9 @@ const SideCart = ({ cart }) => {
           <p className=" m-1 bg-white text-black rounded p-2" id="rest">
             RestTime {time}
           </p>
-          <button className="btn btn-waarning w-full">Complete</button>
+          <button className="btn btn-waarning w-full" onClick={displayToast}>
+            Complete
+          </button>
         </div>
       </div>
     </div>
