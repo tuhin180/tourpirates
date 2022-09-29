@@ -1,21 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import profile from "../../Utilities/images/Tuhin.jpg";
 
 // calculating Cost
 const SideCart = ({ cart }) => {
-  const [innerText, SetinnerText] = useState([]);
   let total = 0;
   for (const item of cart) {
     total = item.Cost;
   }
 
   // button data
+  const [time, setTime] = useState([]);
   const buttonText = (props) => {
-    SetinnerText(props);
+    setTime(props);
+    localStorage.setItem("rest-time", props);
   };
-
+  useEffect(() => {
+    const getStoredItem = localStorage.getItem("rest-time");
+    setTime(getStoredItem);
+  }, []);
   return (
     <div className="bg-green-400 rounded sticky top-0 p-2 ">
       <div className=" md:flex md:gap-2 justify-center text-center items-center">
@@ -74,7 +78,7 @@ const SideCart = ({ cart }) => {
             Total Cost {total}
           </p>
           <p className=" m-1 bg-white text-black rounded p-2" id="rest">
-            RestTime {innerText}
+            RestTime {time}
           </p>
           <button className="btn btn-waarning w-full">Complete</button>
         </div>
